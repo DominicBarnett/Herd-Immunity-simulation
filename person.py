@@ -9,6 +9,8 @@ class Person(object):
         # A person has an id, is_vaccinated and possibly an infection
         self._id = _id  # int
         # TODO Define the other attributes of a person here
+        self.is_vaccinated = is_vaccinated
+        self.infection = infection
         pass
 
     def did_survive_infection(self):
