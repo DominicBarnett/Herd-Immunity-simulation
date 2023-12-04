@@ -2,8 +2,7 @@ class Logger(object):
     def __init__(self, file_name):
         # TODO:  Finish this initialization method. The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        pass
-
+        self.file_name = file_name
     # The methods below are just suggestions. You can rearrange these or 
     # rewrite them to better suit your code style. 
     # What is important is that you log the following information from the simulation:
@@ -28,21 +27,53 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        log = open(self.file_name, 'w')
+        log.write(f'Population Size: {pop_size}\n'
+                        f'Vaccination Percentage: {vacc_percentage}\n'
+                        f'Virus Name: {virus_name}\n'
+                        f'Mortality Rate: {mortality_rate}\n'
+                        f'Basic Reproduction Number: {basic_repro_num}\n'
+        )
+        log.close()
 
-    def log_interactions(self, step_number, number_of_interactions, number_of_new_infections):
+    def log_interactions(self, number_of_fatalities, number_of_new_infections):
         # TODO: Finish this method. Think about how the booleans passed (or not passed)
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        log = open(self.file_name, 'a')
+        log.write(f'\nNumber of New Infections: {number_of_new_infections}\n'
+                            f'Number of New Deaths: {number_of_fatalities}\n')
+        log.close()
 
-    def log_infection_survival(self, step_number, population_count, number_of_new_fatalities):
+    def log_infection_survival(self, population_count, number_of_new_fatalities, number_of_vaccinations):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        pass
+        log = open(self.file_name, 'a')
+        log.write('\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'
+                            f'\nCurrent Population Count: {population_count}\n'
+                            f'Total Number of Deaths: {number_of_new_fatalities}\n'
+                            f'Total Number of Vaccinations Administered: {number_of_vaccinations}\n\n\n')
+        log.close()
 
     def log_time_step(self, time_step_number):
-        # 
-        pass
+        log = open(self.file_name, 'a')
+        log.write('\n\n----------------------------\n'
+                            f'Time Step Number: {time_step_number}'
+                            '\n----------------------------\n')
+        log.close()
+
+    def end_of_sim_stats(self, surivor_count, fatality_count, total_vaccinated_count, reason_for_ending, interaction_count, new_vaccinated_count, newly_infected_count, initial_population, vaccine_saves):
+        log = open(self.file_name, 'a')
+        log.write('-~-~-~-~-~-~-~-~-~-~-~-~-~-\n'
+                            f'\nNumber of Survivors: {surivor_count}\n'
+                            f'Total Number of Deaths: {fatality_count}\n'
+                            f'Total Number of Vaccinations: {total_vaccinated_count}\n'
+                            f'Reason for Simulation Ending: {reason_for_ending}\n'
+                            f'Total Number of Interactions: {interaction_count}\n'
+                            f'Newly Vaccinated Count: {new_vaccinated_count}\n'
+                            f'Perecentage of Population That Became Infected: {round(newly_infected_count / initial_population * 100, 2)}%\n'
+                            f'Perecentage of Population That Died: {round(fatality_count / initial_population * 100, 2)}%\n'
+                            f'Number of Lives Saved by Vaccinations: {vaccine_saves}\n')
+        log.close()
