@@ -1,87 +1,128 @@
-import random 
-# random.seed(42)
+import random
 from virus import Virus
 
 
 class Person(object):
-    # Define a person. 
     def __init__(self, _id, is_vaccinated, infection = None):
         self._id = _id  # int
         self.is_vaccinated = is_vaccinated
         self.infection = infection
         self.is_alive = True
-        pass
 
     def did_survive_infection(self):
-       
-        random_num = random.random()
-        if random_num < self.infection.mortality_rate:
-            self.is_alive == False
-        else:
-            self.is_vaccinated == True
-            self.infection == None
-       
+        if self.infection is not None:
+            if random.random() < self.infection.mortality_rate:
+                self.is_alive = False
+            else:
+                self.is_vaccinated = True
+                self.infection = None
         return self.is_alive
 
-if __name__ == "__main__":
-    # This section is incomplete finish it and use it to test your Person class
-    # TODO Define a vaccinated person and check their attributes
+if __name__ == '__main__':
     vaccinated_person = Person(1, True)
     assert vaccinated_person._id == 1
     assert vaccinated_person.is_alive is True
     assert vaccinated_person.is_vaccinated is True
     assert vaccinated_person.infection is None
 
-    # Create an unvaccinated person and test their attributes
+
     unvaccinated_person = Person(2, False)
-    # TODO Test unvaccinated_person's attributes here...
 
-    # Test an infected person. An infected person has an infection/virus
-    # Create a Virus object to give a Person object an infection
-    virus = Virus("Dysentery", 0.7, 0.2)
-    # Create a Person object and give them the virus infection
+    assert unvaccinated_person._id == 2
+    assert unvaccinated_person.is_alive is True
+    assert unvaccinated_person.is_vaccinated is False
+    assert unvaccinated_person.infection is None
+
+    virus = Virus('Dysentery', 0.7, 0.2)
+
     infected_person = Person(3, False, virus)
-    # TODO: complete your own assert statements that test
-    # the values of each attribute
-    # assert ...
 
-    # You need to check the survival of an infected person. Since the chance
-    # of survival is random you need to check a group of people. 
-    # Create a list to hold 100 people. Use the loop below to make 100 people
+    assert infected_person._id == 3
+    assert infected_person.is_alive is True
+    assert infected_person.is_vaccinated is False
+    assert infected_person.infection is virus
+
     people = []
     for i in range(1, 100):
-        # TODO Make a person with an infection
-        # TODO Append the person to the people list
-        pass
+        people.append(Person(i, False, virus))
 
-    # Now that you have a list of 100 people. Resolve whether the Person 
-    # survives the infection or not by looping over the people list. 
 
-    # for person in people:
-    #     # For each person call that person's did_survive_infection method
-    #     survived = person.did_survive_infection()
+    for person in people:
+        survived = person.did_survive_infection()
 
-    # Count the people that survived and did not survive: 
    
-    # did_survived = 0
-    # did_not_survive = 0
+    did_survive = 0
+    did_not_survive = 0
 
-    # TODO Loop over all of the people 
-    # TODO If a person is_alive True add one to did_survive
-    # TODO If a person is_alive False add one to did_not_survive
+    for person in people:
+        if person.did_survive_infection():
+            did_survive += 1
+        else:
+            did_not_survive += 1
 
-    # TODO When the loop is complete print your results.
-    # The results should roughly match the mortality rate of the virus
-    # For example if the mortality rate is 0.2 rough 20% of the people 
-    # should succumb. 
+    print(f'People who survived: {did_survive}')
+    print(f'People who did not survive: {did_not_survive}\n')
 
-    # Stretch challenge! 
-    # Check the infection rate of the virus by making a group of 
-    # unifected people. Loop over all of your people. 
-    # Generate a random number. If that number is less than the 
-    # infection rate of the virus that person is now infected. 
-    # Assign the virus to that person's infection attribute. 
+    # Additional test 1
+    virus1 = Virus('HIV', 0.8, 0.3)
 
-    # Now count the infected and uninfect people from this group of people. 
-    # The number of infectedf people should be roughly the same as the 
-    # infection rate of the virus.
+    uninfected_people1 = []
+    became_infected1 = 0
+    became_vaccinated1 = 0
+
+    for i in range(1, 100):
+        uninfected_people1.append(Person(i, False))
+
+    for person in uninfected_people1:
+        if random.random() < virus1.repro_rate:
+            person.infection = virus1
+            became_infected1 += 1
+        else:
+            became_vaccinated1 += 1
+
+    print(f'People who became infected: {became_infected1}')
+    print(f'Virus infection rate out of 100: {int(virus1.repro_rate * 100)}')
+    print(f'People who became vaccinated: {became_vaccinated1}\n')
+
+    # Additional test 2
+    virus2 = Virus('Ebola', 0.4, 0.9)
+
+    uninfected_people2 = []
+    became_infected2 = 0
+    became_vaccinated2 = 0
+
+    for i in range(1, 100):
+        uninfected_people2.append(Person(i, False))
+
+    for person in uninfected_people2:
+        if random.random() < virus2.repro_rate:
+            person.infection = virus2
+            became_infected2 += 1
+        else:
+            became_vaccinated2 += 1
+
+    print(f'People who became infected: {became_infected2}')
+    print(f'Virus infection rate out of 100: {int(virus2.repro_rate * 100)}')
+    print(f'People who became vaccinated: {became_vaccinated2}\n')
+
+
+    # Additional test 3
+    virus3 = Virus('Covid', 0.6, 0.2)
+
+    uninfected_people3 = []
+    became_infected3 = 0
+    became_vaccinated3 = 0
+
+    for i in range(1, 100):
+        uninfected_people3.append(Person(i, False))
+
+    for person in uninfected_people3:
+        if random.random() < virus3.repro_rate:
+            person.infection = virus3
+            became_infected3 += 1
+        else:
+            became_vaccinated3 += 1
+
+    print(f'People who became infected: {became_infected3}')
+    print(f'Virus infection rate out of 100: {int(virus3.repro_rate * 100)}')
+    print(f'People who became vaccinated: {became_vaccinated3}')

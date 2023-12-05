@@ -1,22 +1,31 @@
 class Logger(object):
     def __init__(self, file_name):
         self.file_name = file_name
- 
 
-    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num):
+
+    """ 
+        "Before Simulation Begins: Display Introduction
+            Initial size of the population
+            Initial number of infected people
+            Name of the virus
+            Stats for the virus
+            Date the simulation was run"
+    """
+    def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num, date_of_simulation):
         log = open(self.file_name, 'w')
         log.write(f'Population Size: {pop_size}\n'
                         f'Vaccination Percentage: {vacc_percentage}\n'
                         f'Virus Name: {virus_name}\n'
                         f'Mortality Rate: {mortality_rate}\n'
                         f'Basic Reproduction Number: {basic_repro_num}\n'
-        )
+                        f'Date of Simulation: {date_of_simulation}\n')
         log.close()
 
-    def log_interactions(self, number_of_fatalities, number_of_new_infections):
+    def log_interactions(self, number_of_new_infections, fatality_count):
         log = open(self.file_name, 'a')
         log.write(f'\nNumber of New Infections: {number_of_new_infections}\n'
-                            f'Number of New Deaths: {number_of_fatalities}\n')
+                            f'Number of New Deaths: {fatality_count}\n')
+
         log.close()
 
     def log_infection_survival(self, population_count, number_of_new_fatalities, number_of_vaccinations):
@@ -26,6 +35,7 @@ class Logger(object):
                             f'Total Number of Deaths: {number_of_new_fatalities}\n'
                             f'Total Number of Vaccinations Administered: {number_of_vaccinations}\n\n\n')
         log.close()
+
 
     def log_time_step(self, time_step_number):
         log = open(self.file_name, 'a')

@@ -1,0 +1,113 @@
+Population Size: 1000
+Vaccination Percentage: 0.1
+Virus Name: Ebola
+Mortality Rate: 0.9
+Basic Reproduction Number: 0.4
+Date of Simulation: 2023-12-04
+
+
+----------------------------
+Time Step Number: 1
+----------------------------
+
+Number of New Infections: 374
+Number of New Deaths: 346
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: 654
+Total Number of Deaths: 346
+Total Number of Vaccinations Administered: 28
+
+
+
+
+----------------------------
+Time Step Number: 2
+----------------------------
+
+Number of New Infections: 320
+Number of New Deaths: 301
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: 353
+Total Number of Deaths: 647
+Total Number of Vaccinations Administered: 47
+
+
+
+
+----------------------------
+Time Step Number: 3
+----------------------------
+
+Number of New Infections: 277
+Number of New Deaths: 264
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: 89
+Total Number of Deaths: 911
+Total Number of Vaccinations Administered: 60
+
+
+
+
+----------------------------
+Time Step Number: 4
+----------------------------
+
+Number of New Infections: 185
+Number of New Deaths: 172
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: -83
+Total Number of Deaths: 1083
+Total Number of Vaccinations Administered: 73
+
+
+
+
+----------------------------
+Time Step Number: 5
+----------------------------
+
+Number of New Infections: 92
+Number of New Deaths: 89
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: -172
+Total Number of Deaths: 1172
+Total Number of Vaccinations Administered: 76
+
+
+
+
+----------------------------
+Time Step Number: 6
+----------------------------
+
+Number of New Infections: 14
+Number of New Deaths: 12
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Current Population Count: -184
+Total Number of Deaths: 1184
+Total Number of Vaccinations Administered: 78
+
+
+-~-~-~-~-~-~-~-~-~-~-~-~-~-
+
+Number of Survivors: -184
+Total Number of Deaths: 1184
+Total Number of Vaccinations: 178
+Reason for Simulation Ending: All living people have been vaccinated.
+Total Number of Interactions: 6000
+Newly Vaccinated Count: 78
+Perecentage of Population That Became Infected: 81.8%
+Perecentage of Population That Died: 118.4%
+Number of Lives Saved by Vaccinations: 78
