@@ -48,19 +48,25 @@ class Simulation(object):
         # or if all of the living people have been vaccinated. 
         # TODO: Loop over the list of people in the population. Return True
         # if the simulation should continue or False if not.
-        pass
+        for person in self.population:
+            if person.is_alive == True and not person.is_vaccinated:
+                return True
+        return False
 
     def run(self):
         # This method starts the simulation. It should track the number of 
         # steps the simulation has run and check if the simulation should 
         # continue at the end of each step. 
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate)
 
         time_step_counter = 0
         should_continue = True
 
         while should_continue:
             # TODO: Increment the time_step_counter
-            # TODO: for every iteration of this loop, call self.time_step() 
+            time_step_counter += 1
+            # TODO: for every iteration of this loop, call self.time_step()
+            self.time_step(time_step_counter) 
             # Call the _simulation_should_continue method to determine if 
             # the simulation should continue
             should_continue = self._simulation_should_continue()
